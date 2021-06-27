@@ -1,5 +1,5 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
-import { v4 as uuidV4, validate } from 'uuid';
+import { validate } from 'uuid';
 
 import { returnError } from 'src/utils/returnError';
 import { document } from '../utils/dynamodbClient';
