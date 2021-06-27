@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Serverless aws-nodejs-typescript template",
   "scripts": {
-    "dev": "sls offline"
+    "dev": "sls offline",
+    "dynamo:start": "serverless dynamodb start"
   },
   "dependencies": {
     "@middy/core": "^1.5.2",
