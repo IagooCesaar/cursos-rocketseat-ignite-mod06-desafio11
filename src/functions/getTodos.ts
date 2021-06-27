@@ -19,7 +19,7 @@ export const handle: APIGatewayProxyHandler = async (event) => {
     },
   }).promise();
 
-  const todos = response.Items[0];
+  const todos = response.Items;
 
   return {
     statusCode: 200,
