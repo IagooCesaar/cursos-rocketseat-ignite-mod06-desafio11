@@ -1,5 +1,6 @@
 import { APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda';
 import { v4 as uuidV4, validate } from 'uuid'
+import { document } from '../utils/dynamodbClient';
 
 interface ICreateTodo {
   title: string;
@@ -32,15 +33,24 @@ export const handle: APIGatewayProxyHandler = async (event) => {
   if (!deadline) {
     return returnError(400, 'Deadline must be provided');
   }
-  
-  const id = uuidV4();
 
+  const id = uuidV4();
+  const todo = {
+    id, 
+    user_id: userId,
+    title,
+    done: false,
+    deadline: new Date(deadline)
+  }
+
+  await document.put({
+    TableName: 'todos',
+    Item: todo,
+  })
 
   return {
     statusCode: 201,
-    body: JSON.stringify({
-      message: 'ok',
-    }),
+    body: JSON.stringify(todo),
     headers: {
       "Content-Type": "application/json",
     }
