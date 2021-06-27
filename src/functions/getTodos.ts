@@ -13,12 +13,10 @@ export const handle: APIGatewayProxyHandler = async (event) => {
   const response = await document.query({
     TableName: 'todos',
     IndexName: 'TodoByUserId',
-    KeyConditionExpression: "userId = :userId",
+    KeyConditionExpression: "user_id = :user_id",
     ExpressionAttributeValues: {
-      ":userId": {"S": userId},
+      ":user_id": userId,
     },
-    ScanIndexForward: false,
-    ProjectionExpression: 'title, done, deadline',
   }).promise();
 
   const todos = response.Items[0];

@@ -43,14 +43,14 @@ resources:
             KeyType: HASH
         GlobalSecondaryIndexes:
           - IndexName: TodoByUserId
-            ProvisionedThroughput:
-              ReadCapacityUnits: 5
-              WriteCapacityUnits: 5
             KeySchema:
               - AttributeName: user_id
                 KeyType: HASH
             Projection:
-              ProjectionType: "ALL"
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 5
+              WriteCapacityUnits: 5
 
 functions:
   createTodo:
