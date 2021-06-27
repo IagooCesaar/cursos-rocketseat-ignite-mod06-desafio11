@@ -39,3 +39,19 @@ resources:
         KeySchema:
           - AttributeName: id
             KeyType: HASH
+
+functions:
+  createTodo:
+    handler: src/functions/createTodo.handle
+    events:
+      - http:
+          path: /createTodo/{userId}
+          method: POST
+          cors: true
+  getTodos:
+    handler: src/functions/getTodos.handle
+    events:
+      - http:
+          path: /getTodos/{userId}
+          method: GET
+          cors: true
