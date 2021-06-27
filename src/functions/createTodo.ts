@@ -35,7 +35,7 @@ export const handle: APIGatewayProxyHandler = async (event) => {
   await document.put({
     TableName: 'todos',
     Item: todo,
-  })
+  }).promise();
 
   return {
     statusCode: 201,
